@@ -215,7 +215,7 @@ Lets begin by opening the “Lab1_frogs.txt” file in the "data" folder. This d
 Note that if you just click on the file from within the **Files** tab, or try to open the file from File > "Open File..."" that this opens the file as a text file, but it it doesn't load the data into R in any way we can use it. Instead, we'll want to run the following command
 
 ```{r}
-dat = read.table("data/Lab1_frogs.txt",header=TRUE)
+dat = read.table("../data/Lab1_frogs.txt",header=TRUE)
 ```
  
 The second variable “header=TRUE” informs R that your data file has column headers that should be read rather than treated as just another line of data.  For the above command to work **R has to be looking at the correct folder**.  You can find out what folder R is currently looking at (its “working directory”) using “getwd” and you can change that directory using “setwd” or within the “Files” window tab under **More > Set As Working Directory**.  
@@ -250,7 +250,7 @@ There is also a “save.image” function that saves every variable you have def
 save.image("Lab1_all.RData")
 ```
 
-These commands will be very helpful if you don’t finish a activity by the end of the period and want to take your whole R desktop home, for saving work in progress, or archiving results of analyses. When you quit R you will be asked if you want to save your desktop and if you answer ‘y’, then save.image is called by default and will save to a file simply named “.Rdata” which is automatically loaded the next time you start R.  While this is convenient, I actually recommend against it and suggest using save or save.image explicitly instead because otherwise it is very easy to accidentally use variables and data sets defined in previous analyses, or to be unsure which version of an analysis you’re working with.
+These commands will be very helpful if you don’t finish an activity by the end of the period and want to take your whole R desktop home, for saving work in progress, or archiving results of analyses. When you quit R you will be asked if you want to save your desktop and if you answer ‘y’, then save.image is called by default and will save to a file simply named “.Rdata” which is automatically loaded the next time you start R.  While this is convenient, I actually recommend against it and suggest using save or save.image explicitly instead because otherwise it is very easy to accidentally use variables and data sets defined in previous analyses, or to be unsure which version of an analysis you’re working with.
 	You can always see what variables you currently have defined in the **Environment** window or by using the command
   
 ```{r}

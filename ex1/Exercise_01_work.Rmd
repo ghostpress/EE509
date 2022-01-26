@@ -1,0 +1,104 @@
+---
+title: "Exercise_01_Complete"
+author: "Lucia Vilallonga"
+date: "1/26/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Questions:
+
+#### 1.
+Evaluate the following:
+   a.	ln(1)
+   b.	ln(0)
+   c.	ln(e)
+   d.	ln(-5)
+   e.	-ln(5)
+   f.	ln(1/5)
+   g.	How does R represent when the output of a function is not a number?
+
+```{r}
+log(1)
+log(0)
+log(exp(1))
+log(-5)
+-log(5)
+log(1/5)
+```
+R prints 'NaN' (Not a Number) and gives a warning. 
+
+
+#### 2.	
+Why are we multiplying the results of the atan and atan2 functions by 180/pi? 
+
+The functions atan() and atan2() in R return angles in Radians, which we can 
+then convert to degrees by multiplying by 180/pi.
+
+#### 3. 
+How is the atan2 function different from the atan function? 
+
+atan2() returns the angle between the x-axis and the vector from the origin to
+the two input vectors x and y. atan(), on the other hand, returns the angle for
+just one input vector. atan2(x, y) = atan(y/x).
+
+#### 4.
+What is the difference between log and log10?
+
+log() returns the natural log (ln) of the input, whereas log10 returns the log
+base-10. 
+
+#### 5.
+
+Given a right triangle with sides x = 5 and y = 13, calculate the length of the 
+hypotenuse (show code)
+
+```{r}
+x = 5
+y = 13
+h = sqrt(x^2 + y^2)
+
+h
+```
+#### 6.	
+
+If a population starts with a density of 5 individuals/hectare and grows 
+exponentially at a growth rate r=0.04/year, what is the size of the population 
+in π years? (show code)
+
+```{r}
+pop_growth <- function(p, r, n) {
+  res = p * ((1 + r)^n)
+  
+  return(res)
+}
+
+p = 5
+r = 0.04
+n = 10   # for example
+
+pop_growth(p, r, n)
+```
+#### 7.	
+Subtract the month you were born from the remainder left after you divide the year you were born by the day you were born (show code)
+
+```{r}
+funky_birth_dates <- function(month, year, day) {
+  rem = year %% day
+  res = rem - month
+  
+  return(res)
+}
+
+funky_birth_dates(3, 2000, 31)
+```
+### R Scripts
+
+See `/home/lucia/bu/year4/semester2/EE509/labs/EE509/Exercise_01.R` for code.
+
+
+
+
