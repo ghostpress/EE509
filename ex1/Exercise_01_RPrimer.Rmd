@@ -103,7 +103,7 @@ y = sqrt(36)	## square root
 y
 ```
   
-The number [1] before the answers just means that this item is the first element of a vector (vectors can be thought of as a collection of related values, such as a column in a data table). From these examples we can see a few things about R. First is that it knows the value of common constants (e.g. π) and can use them like numbers. Second, that we can assign both constants and the results of functions to variables and we can see the value of a variable by entering it at the command prompt. This also demonstrates “sqrt”, the square root function, and that values are passed to functions within parenthesis.  Typically, values passed to function are referred to as the arguments of the functions. Make sure you understand what each operator (+, -, *, /, %%, %/%) does before you proceed.  Some of the other common mathematical operators in R that you should try running are:
+The number [1] before the answers just means that this item is the first element of a vector (vectors can be thought of as a collection of related values, such as a column in a data table). From these examples we can see a few things about R. First is that it knows the value of common constants (e.g. π) and can use them like numbers. Second, that we can assign both constants and the results of functions to variables and we can see the value of a variable by entering it at the command prompt. This also demonstrates “sqrt”, the square root function, and that values are passed to functions within parenthesis.  Typically, values passed to function are referred to as the arguments of the functions. Make sure you understand what each operator (+, -, *, /, %%, %/%) does before you proceed. Some of the other common mathematical operators in R that you should try running are:
 
 ```
 10^2  			        ## power
@@ -533,7 +533,7 @@ abline(a=0,b=1)					## add a 1:1 line (intercept=0, slope=1)
 hist(dat$tadpoles)				## histogram
 abline(v=mean(dat$tadpoles))			## add a vertical line at the mean
 
-pairs(dat)					## all pairwise scatter plots
+pairs(dat)					## all pairwise scatter plots     
 
 barplot(tapply(dat$frogs,dat$color,mean))		## barplot of frogs by color
 abline(h=3)					## add a horizontal line at 3
@@ -597,8 +597,7 @@ abline(reg1,col="green",		# add the regression line
 legend("topleft",
        c("Red no spot","Blue no spot","Red spots","Blue Spots"),
        pch=c(1,1,2,2),
-       col=c("red","blue","red","blue"),cex=1.3
-       )
+       col=c("red","blue","red","blue"),cex=1.3)
 ```
 
 ``` 
@@ -677,7 +676,7 @@ my.division = function(x,y){
 	}else if(is.integer(x) & is.integer(y)){
 	z = x %/% y 	## Do Integer division
 } else {
-	z = x/y          	## Do normal division
+	z = x/y       ## Do normal division
 }
 	return(x)
 }
@@ -770,7 +769,7 @@ The last example shows that we can also perform element-wise math between a matr
 	In addition to element-wise math, R can also perform standard matrix math. If you have not seen this math before you don’t need to worry about what it is doing at this point, any matrix operations will be explained on a case-by-case later in the semester.
  
 ```{r}
-t(z)  		## transpose
+t(z)  		  ## transpose
 diag(z)			## diagonal of an existing matrix
 diag(1,5)   ## create a diagonal matrix
 w = z + diag(1,5) ## matrix addition
