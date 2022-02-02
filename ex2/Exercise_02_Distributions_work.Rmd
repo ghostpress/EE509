@@ -250,15 +250,55 @@ lines(p,pbeta(p,0.2,0.2),col=3)
 hist(rbeta(500,3,3),breaks=30,xlim=range(p),probability=TRUE)
 lines(p,dbeta(p,3,3),col=2)
 lines(p,dbeta(p,3,3),col=2)
+
+plot(p, dbeta(x, 1, 1), type='l')
 ```
 
 ### Lab questions
 ```
 Lab questions: 
   3) The Beta has a special case, Beta(1,1) that is equivalent to what other PDF?
+```  
+  The Uniform(0, 1) distribution.
+
+```  
   4) In the first panel, the mean is the same for each line (0.5).  What are the variances? (Hint: Calculate this analytically. Look up the distribution in one of the recommended references.)
+```  
+  $$var(X) = \frac{\alpha \beta}{(\alpha + \beta)^2(\alpha + \beta + 1)} $$
+  Variances:
+  
+  $$\alpha = \beta = 5 \implies var(X) = 0.02272727$$ 
+  $$\alpha = \beta = 1 \implies var(X) = 0.08333333$$
+  $$\alpha = \beta = 0.2 \implies var(X) = 0.1785714 $$
+  
+```  
   5) In the second panel, what are the means and medians of each of these curves?  (Hint: you'll need to calculate the mean analytically and use one of the variants of R's beta function to find the median.)
 ```
+
+$$E[X] = \frac{\alpha}{\alpha + \beta}$$
+Write it into a function:
+
+```{r}
+meanbeta <- function(alpha, beta) {
+  return(alpha / (alpha + beta))
+}
+
+meanbeta(6, 6)
+meanbeta(6, 4)
+meanbeta(6, 2)
+meanbeta(6, 1.25)
+meanbeta(6, 0.25)
+```
+To find the medians, use the qbeta function with quantile 0.5:
+
+```{r}
+qbeta(0.5, 6, 6)
+qbeta(0.5, 6, 4)
+qbeta(0.5, 6, 2)
+qbeta(0.5, 6, 1.25)
+qbeta(0.5, 6, 0.25)
+```
+
 
 ### Log Normal
 
@@ -303,6 +343,9 @@ lines(x,dlnorm(x,2,1),col=4)
 ### Lab questions
 ```
 6) What are the arithmetric and geometric means of the three curves in the first panel? (Reminder: arithmetic means are means in the linear domain, geometric means are means in the log domain)
+
+Arithmetic means = 0                            TODO: ????
+Geometrics means = 0, 1, 2
 ```
 
 ## Exponential & Laplace
@@ -325,7 +368,7 @@ hist(rexp(250,2),breaks=30,probability=TRUE)
 lines(x,dexp(x,2),col=4)
 
 ## laplace vs Gaussian
-plot(x,dexp(abs(x-5),1)/2,type='l')
+plot(x,dexp(abs(x-5),1)/2,type='l')   ## exponential
 lines(x,dnorm(x,5),col=2)
 
 plot(x,dexp(abs(x-5),1)/2,type='l',log='y')   ## same plot as last but on a log scale
@@ -335,6 +378,12 @@ lines(x,dnorm(x,5),col=2)
 ### Lab questions:
 ``` 
 7) The last two panels compare a normal and a Laplace distribution with the same mean and variance.  How do the two distributions compare?  In particular, compare the difference in the probabilities of extreme events in each distribution.
+
+The normal is differentiable everywhere, but the Laplace is not at its mean. 
+Although for both distributions, the probability of an extreme event (ie an
+event at the tails, near 0 or 10) approaches 0, it does so less quickly for the
+normal distribution than the Laplace. 
+
 ```
 
 ## Gamma
@@ -345,7 +394,7 @@ The gamma and inverse-gamma distribution are flexible distributions defined for 
 x <- seq(0,10,by=0.01)
 
 ## change rate
-plot(x,dgamma(x,3,3),type='l' ,ylim=c(0,1.6))
+plot(x,dgamma(x,3,3),type='l',ylim=c(0,1.6))
 lines(x,dgamma(x,3,1),col=2)
 lines(x,dgamma(x,3,6),col=3)
 lines(x,dgamma(x,3,1/3),col=4)
@@ -361,7 +410,7 @@ legend("topright",legend=c(3,1,6,18),lty=1,col=1:4)
 ## change variance
 a <- c(20,15,10,5,2.5,1.25)
 r <- c(4,3,2,1,0.5,0.25)
-plot(x,dgamma(x,20,4),type='l')
+plot(x,dgamma(x,20,4),type='l', main="Changing the Variance")
 for(i in 1:6){
   lines(x,dgamma(x,a[i],r[i]),col=i)}
 var = a/r^2
@@ -375,7 +424,7 @@ var = 4
 mean = c(1,2,3,4,5)
 rate = mean/var
 shape = mean^2/var
-plot(x,dgamma(x,shape[2],rate[2]),type='l',col=2)
+plot(x,dgamma(x,shape[2],rate[2]),type='l',col=2, main="Changing the Mean")
 for(i in 1:5){
   lines(x,dgamma(x,shape[i],rate[i]),col=i)
 }
@@ -387,6 +436,12 @@ shape
 ### Lab questions:
 ``` 
 8) Looking at the 'change variance' figure, how does the variance change as a and r increase? Qualitatively, how does this affect the mode and skew? Quantitatively, how does this affect the median (relative to the mean)?
+
+As a and r increase, the variance... ????
+
+As a and r increase, the mode decreases and the distributions skew to the right.
+
+Median wrt mean: ....????
 ```
 
 # Part 2: Discrete distributions
