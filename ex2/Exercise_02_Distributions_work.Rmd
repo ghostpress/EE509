@@ -206,7 +206,18 @@ lines(x,dunif(x,-3,3),col=2)
 ### Lab questions: 
 ```
 1. Why does the height of the uniform PDF change as the width changes?
+
+The height of the uniform PDF changes as the width changes because the height
+is an expression of the probability of each value in a given range (width). If
+the width is larger, then each individual value has a smaller probability
+because the sum of all their probabilities is bounded by 1. For example,
+if the width = 10, then each value {1, 2, ..., 10} has probability 1/10. On the
+other hand, if the width = 2, then each value {1, 2} has probability 1/2.
+
 2. What do the second and third arguments to the uniform specify? What are their default values?
+
+dunif(dat, a, b) -> a and b are st the "width" of the distribution is b-a and
+the domain is [a, b]. The default values are 0 and 1. 
 ```
 
 ### Beta
