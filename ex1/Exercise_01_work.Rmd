@@ -95,7 +95,7 @@ funky_birth_dates <- function(month, year, day) {
 
 funky_birth_dates(3, 2000, 31)
 ```
-### R Scripts
+#### R Scripts (#8-27)
 
 See `/home/lucia/bu/year4/semester2/EE509/labs/EE509/Exercise_01.R` for code.
 
