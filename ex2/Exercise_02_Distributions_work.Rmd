@@ -345,7 +345,7 @@ lines(x,dlnorm(x,2,1),col=4)
 6) What are the arithmetric and geometric means of the three curves in the first panel? (Reminder: arithmetic means are means in the linear domain, geometric means are means in the log domain)
 
 Arithmetic means = 0                            TODO: ????
-Geometrics means = 0, 1, 2
+Geometric means = 0, 1, 2
 ```
 
 ## Exponential & Laplace
@@ -383,7 +383,6 @@ The normal is differentiable everywhere, but the Laplace is not at its mean.
 Although for both distributions, the probability of an extreme event (ie an
 event at the tails, near 0 or 10) approaches 0, it does so less quickly for the
 normal distribution than the Laplace. 
-
 ```
 
 ## Gamma
@@ -437,11 +436,14 @@ shape
 ``` 
 8) Looking at the 'change variance' figure, how does the variance change as a and r increase? Qualitatively, how does this affect the mode and skew? Quantitatively, how does this affect the median (relative to the mean)?
 
-As a and r increase, the variance... ????
+As a and r increase, the variance also increases:
+```
+$$Var(X) = \frac{a}{r^2}$$
 
+```
 As a and r increase, the mode decreases and the distributions skew to the right.
 
-Median wrt mean: ....????
+The mean for each curve is 5, but the median decreases as a and r increase and the curves become more skewed.
 ```
 
 # Part 2: Discrete distributions
@@ -489,6 +491,27 @@ legend("topright",legend=c("sample","pmf"),lty=1,col=1:2)
 ### Lab questions:
 ```
 9)  Consider a binomial distribution that has a constant mean, np.  What are the differences in the shape of this distribution if it has a high n and low p vs. a low n and high p?
+
+With a high n and low p, the shape of the binomial is more symmetrical (panel 1 below). On the othe rhand, with a low n and high p, the distribution is skewed. 
+```
+
+```{r}
+x <- 0:11
+
+# constant mean
+mean = 5
+
+# high n, low p
+n = 200
+p = mean / n
+
+plot(x, dbinom(x, n, p), type='s')
+
+# low n, high p
+n_ = 2
+p_ = mean / n
+
+plot(x, dbinom(x, n_, p_), type='s')
 ```
 
 ## Poisson
@@ -518,11 +541,37 @@ The last two panels depict a comparison of the Poisson, Normal, and Binomial wit
 
 ### Lab questions:
 ```
-10)  Normal distributions are often applied to count data even though count data can only take on positive integer values.  Is this fair is this to do in these two examples? (i.e. how good is the normal approximation)
-11) Would the normal be a fair approximation to the Poisson curves for small numbers (the first panel)? How about for the Bionomial for small numbers (earlier panel of figures on the Binomial)?
+10)  Normal distributions are often applied to count data even though count data can only take on positive integer values.  Is this fair to do in these two examples? (i.e. how good is the normal approximation)
+
+This is fair, because the normal distribution can be "shifted" with a nonzero mean to also take on only positive values. In both panel 2 and 3, we see that the normal approximation is very good (ie it almost matches the Poisson and Binomial).
+
+11) Would the normal be a fair approximation to the Poisson curves for small numbers (the first panel)? How about for the Binoomial for small numbers (earlier panel of figures on the Binomial)?
+
+No, for small numbers, the normal is not a good approximation of neither the Poisson nor the Binomial  (Central Limit Theorem). 
+
 12) Is the Poisson a good approximation of the Binomial?
-13) Is it possible to choose the parameters so that the Poisson and Binomial to both have the same mean and  variance?  If so what is this parameterization?
+
+For lambda = np, the Poisson can approximate the Binomial distribution well (see below).
 ```
+```{r}
+n = 100
+p = 0.1
+
+lambda = n*p
+
+x <- 0:30
+
+plot(x, dpois(x ,lambda), col=1, type='s')
+lines(x, dbinom(x, n, p), col=2, type='s')
+legend("topright", legend=c("pois", "norm"), col=1:2, lty=1)
+```
+
+```
+13) Is it possible to choose the parameters so that the Poisson and Binomial to both have the same mean and  variance?  If so what is this parameterization?
+
+The mean of the Poisson is lambda, which is also its variance. For the Binomial, the mean is np and the variance is np(1-p). Therefore, parameterize:
+```
+$$ np = \lambda = np(1-p) $$
 
 ## Negative binomial
 
@@ -570,5 +619,20 @@ lines(x,dnbinom(x,1,0.15),type="s",col=4,lty=2)
 ### Lab questions:
 ``` 
 14)  In the 'vary size' panel, what are the means of the curves? 
+
+Equation for the mean:
+```
+$$\mu = \frac{n(1-p)}{p}$$
+```
+And since p=0.5 for every curve, then the means are:
+1, 2, 3, 5, and 10.
+
 15) In the “vary variance” panel, how does the shape of the Negative Binomial compare to a Poisson with the same mean?
+
+The mean for each of these curves is 8. A Poisson with mean 8 matches the blue Negative Binomial Curve (see below). Each of the other ones is skewed too far to the right.
+```
+```{r}
+x <- 0:20
+
+plot(x, dpois(x, 8), type="s", main="Poisson with mean 8")
 ```
