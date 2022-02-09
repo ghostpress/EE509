@@ -344,8 +344,16 @@ lines(x,dlnorm(x,2,1),col=4)
 ```
 6) What are the arithmetric and geometric means of the three curves in the first panel? (Reminder: arithmetic means are means in the linear domain, geometric means are means in the log domain)
 
-Arithmetic means = 0                            TODO: ????
+Arithmetic means = 1.648721, 4.481689, 12.18249 (source below)                     
 Geometric means = 0, 1, 2
+```
+
+```{r}
+m <- c(0, 1, 2)
+
+for(i in m) {
+  print(exp(i + 0.5*1^2))
+}
 ```
 
 ## Exponential & Laplace
