@@ -8,14 +8,14 @@ This week's lab will continue our exploration of analytical and numerical approa
 
 # Case Study: Effects of Elevated CO2 on Pine Fecundity
 
-![Duke Face Site](images/nsoeaerial.jpg)
+![Duke Face Site](../images/nsoeaerial.jpg)
 
 The response of ecosystems to elevated CO2 involves not just the change in growth rates of plants, but also the change in their survival and reproduction.  This week's analysis will look at the response of loblolly pine (Pinus taeda) to being grown in both elevated and ambient CO2 under field conditions at a FACE (Free Air CO2 Enrichment) site in North Carolina (LaDeau and Clark 2001).  Part of this data set consists of counts of the number of pine cones on trees in both treatments.  Trees of different sizes are known to vary in their reproductive output, with larger trees being more fecund.  Because we know that the trees under elevated CO2 are growing faster, and thus are on average larger, this analysis will need to account for tree size as a covariate to determine if trees in elevated CO2 produce more seed at a given size (i.e. fecundity | size) or if the increase in fecundity under elevated CO2 is just due to an increase in tree size.  This experiment fortuitously began right as the trees were starting to mature, so there is the additional question of whether CO2 affects the size at which trees reach maturity.
 
 Lets begin by loading up the data and taking a look at it
 
 ```{r}
-b <- read.table("data/pinecones.txt",header=TRUE)
+b <- read.table("../data/pinecones.txt", header=TRUE, as.is=FALSE)
 
 str(b)
 summary(b)
@@ -25,7 +25,7 @@ table(b$ring,b$tmt)           ## shows number of trees by ring and treatment
 hist(b$c00,breaks=0:92,probability=TRUE,ylim=c(0,1))
 
 ##plot of counts by tree size (x-axis) and CO2 (AMB is black, CO2 is red)
-plot(b$diam,b$c00,col = b$tmt)
+plot(b$diam, b$c00, col=b$tmt)
 ```
 
 
@@ -101,6 +101,16 @@ plot(xseq,pnorm(xseq,15,3),type='l')
 ### Lab Report Task 1
 
 In fitting the model numerically we're going to need some initial conditions for the routine to start from.  **Make a plot showing maturation (dia vs cones)**.  To this plot **add $\theta(x)$ to the maturation plot**.  Choose the parameters for this function (b0, b1) so that the plots is reasonable given the data.  Specify the values for (b0, b1) in R as a vector named "param".
+
+```{r}
+plot(dia, cones)
+# lines(dia, pnorm(dia, 15, 3), col=2)
+
+thetas <- pnorm(dia, 15, 3)
+plot(dia, thetas, col=2, type='l')
+# xseq,pnorm(xseq,15,3)
+
+```
 
 ```{r,echo=FALSE}
     b0 = 0
